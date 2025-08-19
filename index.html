@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Burger 🌸 - Hamburguesería Anime</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --sakura-pink: #ff6b9d;
+            --deep-purple: #4a0e4e;
+            --electric-blue: #00d4ff;
+            --warm-yellow: #ffd93d;
+            --dark-bg: #1a0b2e;
+        }
+        
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #2d1b69 100%);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Partículas flotantes estilo sakura */
+        .sakura-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .petal {
+            position: absolute;
+            background: linear-gradient(135deg, var(--sakura-pink), #ff8fab);
+            width: 10px;
+            height: 10px;
+            border-radius: 150% 0 150% 0;
+            animation: fall 15s linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Header con efecto neón */
+        header {
+            position: relative;
+            z-index: 100;
+            padding: 20px;
+            background: rgba(26, 11, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--electric-blue);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3em;
+            background: linear-gradient(45deg, var(--sakura-pink), var(--electric-blue), var(--warm-yellow));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+        }
+        
+        @keyframes glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.3); }
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--electric-blue);
+            text-shadow: 0 0 10px var(--electric-blue);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--electric-blue);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            z-index: 10;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 3px 3px 0 var(--deep-purple),
+                         6px 6px 0 rgba(255, 107, 157, 0.3),
+                         0 0 40px rgba(0, 212, 255, 0.5);
+        }
+        
+        .japanese-text {
+            font-size: 1.5em;
+            color: var(--sakura-pink);
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        .hero-description {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--sakura-pink), var(--electric-blue));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.7);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        /* Menu Section */
+        .menu-section {
+            position: relative;
+            z-index: 10;
+            padding: 80px 20px;
+            background: rgba(42, 27, 105, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .section-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .section-title::before,
+        .section-title::after {
+            content: '⚡';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7em;
+            color: var(--electric-blue);
+            animation: spark 1s infinite alternate;
+        }
+        
+        .section-title::before {
+            left: 20%;
+        }
+        
+        .section-title::after {
+            right: 20%;
+        }
+        
+        @keyframes spark {
+            from { opacity: 0.3; transform: translateY(-50%) scale(0.8); }
+            to { opacity: 1; transform: translateY(-50%) scale(1.2); }
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .menu-item {
+            background: linear-gradient(135deg, rgba(74, 14, 78, 0.7), rgba(0, 212, 255, 0.1));
+            border: 2px solid var(--electric-blue);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.1), transparent);
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.4),
+                        0 0 60px rgba(255, 107, 157, 0.3);
+            border-color: var(--sakura-pink);
+        }
+        
+        .menu-item h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: var(--warm-yellow);
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 1px;
+        }
+        
+        .menu-item .japanese-name {
+            color: var(--sakura-pink);
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .menu-item p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 1.5em;
+            font-weight: 900;
+            color: var(--electric-blue);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        /* Special Powers Section */
+        .powers-section {
+            position: relative;
+            z-index: 10;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .power-cards {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .power-card {
+            background: rgba(255, 107, 157, 0.1);
+            border: 3px solid var(--sakura-pink);
+            border-radius: 20px;
+            padding: 40px;
+            width: 250px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .power-card::after {
+            content: '✨';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 2em;
+            animation: sparkle 1s infinite alternate;
+        }
+        
+        @keyframes sparkle {
+            from { transform: scale(0.8) rotate(0deg); }
+            to { transform: scale(1.2) rotate(180deg); }
+        }
+        
+        .power-card:hover {
+            transform: translateY(-15px) rotate(-2deg);
+            box-shadow: 0 30px 50px rgba(255, 107, 157, 0.4);
+        }
+        
+        .power-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .power-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: var(--warm-yellow);
+        }
+        
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 10;
+            background: rgba(26, 11, 46, 0.95);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 3px solid var(--electric-blue);
+            margin-top: 100px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: var(--electric-blue);
+            font-size: 1.5em;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--sakura-pink);
+            transform: scale(1.3) rotate(360deg);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pétalos de sakura flotantes -->
+    <div class="sakura-container" id="sakuraContainer"></div>
+    
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">SAKURA BURGER 🌸</div>
+            <ul class="nav-links">
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#powers">Poderes</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>¡La Hamburguesa Legendaria Ha Llegado!</h1>
+            <div class="japanese-text">伝説のバーガー</div>
+            <p class="hero-description">
+                Cada mordida es una aventura épica. Nuestras hamburguesas están imbuidas con el poder del umami ancestral y la técnica secreta de los maestros parrilleros del Monte Fuji.
+            </p>
+            <a href="#menu" class="cta-button">¡Desata tu Poder!</a>
+        </div>
+    </section>
+    
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <h2 class="section-title">MENÚ DE BATALLA</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h3>TITAN BURGER</h3>
+                <div class="japanese-name">タイタンバーガー</div>
+                <p>Triple carne de res, queso derretido como lava, salsa especial del Muro María. ¡Rompe todas las defensas del hambre!</p>
+                <div class="price">$189</div>
+            </div>
+            
+            <div class="menu-item">
+                <h3>RASENGAN SUPREME</h3>
+                <div class="japanese-name">螺旋丸スプリーム</div>
+                <p>Carne en espiral perfecta, cebolla caramelizada con chakra, salsa ninja secreta. El poder del Hokage en tus manos.</p>
+                <div class="price">$175</div>
+            </div>
+            
+            <div class="menu-item">
+                <h3>ONE PUNCH BURGER</h3>
+                <div class="japanese-name">ワンパンチバーガー</div>
+                <p>Una sola hamburguesa para acabar con todo el hambre. 200g de poder puro, lechuga crujiente y salsa del héroe.</p>
+                <div class="price">$165</div>
+            </div>
+            
+            <div class="menu-item">
+                <h3>DRAGON BALL BBQ</h3>
+                <div class="japanese-name">ドラゴンボールBBQ</div>
+                <p>7 esferas de queso mozzarella, carne con ki concentrado, salsa BBQ del planeta Namek. ¡Nivel de poder: más de 9000!</p>
+                <div class="price">$195</div>
+            </div>
+            
+            <div class="menu-item">
+                <h3>KAWAII VEGGIE</h3>
+                <div class="japanese-name">かわいいベジー</div>
+                <p>Hamburguesa de quinoa y champiñones shiitake, aguacate del bosque de los espíritus, brotes mágicos. ¡Tan linda que da pena comerla!</p>
+                <div class="price">$155</div>
+            </div>
+            
+            <div class="menu-item">
+                <h3>DEMON SLAYER SPICY</h3>
+                <div class="japanese-name">鬼滅スパイシー</div>
+                <p>Carne marinada en fuego de respiración solar, jalapeños del infierno, salsa tan picante que necesitarás respiración de agua.</p>
+                <div class="price">$180</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Powers Section -->
+    <section id="powers" class="powers-section">
+        <h2 class="section-title">PODERES ESPECIALES</h2>
+        <div class="power-cards">
+            <div class="power-card">
+                <div class="power-icon">⚡</div>
+                <h3>Entrega Veloz</h3>
+                <p>¡Más rápido que un shinigami! 30 minutos o es gratis.</p>
+            </div>
+            
+            <div class="power-card">
+                <div class="power-icon">🔥</div>
+                <h3>Combo Power-Up</h3>
+                <p>Mejora tu nivel con nuestros combos especiales y gana puntos de experiencia.</p>
+            </div>
+            
+            <div class="power-card">
+                <div class="power-icon">💫</div>
+                <h3>Transformación VIP</h3>
+                <p>Únete a nuestro club y desbloquea hamburguesas secretas del menú oculto.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="social-links">
+            <a href="#">📱</a>
+            <a href="#">📧</a>
+            <a href="#">📍</a>
+        </div>
+        <p>© 2025 Sakura Burger - Donde los sueños y las hamburguesas se hacen realidad</p>
+        <p style="margin-top: 10px; opacity: 0.7;">私たちを信じて！</p>
+    </footer>
+    
+    <script>
+        // Generar pétalos de sakura
+        function createPetal() {
+            const container = document.getElementById('sakuraContainer');
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.animationDelay = Math.random() * 15 + 's';
+            petal.style.animationDuration = (15 + Math.random() * 10) + 's';
+            container.appendChild(petal);
+            
+            setTimeout(() => {
+                petal.remove();
+            }, 25000);
+        }
+        
+        // Crear pétalos continuamente
+        setInterval(createPetal, 1000);
+        
+        // Crear pétalos iniciales
+        for(let i = 0; i < 10; i++) {
+            setTimeout(createPetal, i * 200);
+        }
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Efecto parallax simple
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
